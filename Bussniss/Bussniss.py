@@ -2,22 +2,28 @@
 __author__ = 'zcs'
 from Commonlib.Commonlib import Commonlib
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait as ww
+from selenium.webdriver.support import expected_conditions as ec
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 class Bussniss():
     def __init__(self):
         self.p=Commonlib()
+
     def login(self,username,password):
-        self.p.waite(3)
-        self.p.activeEvent("xpath",".//*[@id='global_unlogin']/a[1]")
-        self.p.waite(3)
-        self.p.inputKeys("xpath",".//*[@id='un']",username)
-        self.p.inputKeys("xpath",".//*[@id='pwd']",password)
-        self.p.activeEvent("xpath",".//*[@id='login_button']")
-        self.p.waite(3)
+        self.p.seeWait('LINK_TEXT',u'登录',20,0.5)
+        self.p.activeEvent("link_text","登录")
+        self.p.wait(4)
+        self.p.inputKeys("id","j_username",username)
+        self.p.inputKeys("id","j_password",password)
+        self.p.wait(1)
+        self.p.activeEvent("id","btn_Login")
+        self.p.wait(3)
         try:
-            gt=self.p.getText("xpath",".//*[@id='global_login']/div[1]/a[1]")
-        except:
-            gt=self.p.getText("xpath",".//*[@id='error_tips']")
-        return gt
+            gt=self.p.getText("link_text","mwlt")
+        finally:
+            gt='错误'
+
     def searchPrice(self,str):
         self.p.waite(3)
         self.p.inputKeys("xpath",".//*[@id='keyword']",str+Keys.ENTER)

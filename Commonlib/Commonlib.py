@@ -3,9 +3,16 @@ __author__ = 'zcs'
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 import time
+from datetime import datetime
+import traceback
+import os
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.wait import WebDriverWait as ww
+
 class Commonlib():
     def __init__(self):
-        self.dr=webdriver.Firefox()
+        self.dr=webdriver.Chrome()
     def openBrowser(self,myurl):
         self.dr.get(myurl)
         self.dr.maximize_window()
@@ -61,7 +68,50 @@ class Commonlib():
         elif type=="partail_link_text":
             return self.dr.find_element_by_partial_link_text(value).text
 
-    def waite(self,number):
+    def createDir(self):
+          '''生成当前日期字符串'''
+          date = time.localtime()
+          str1='-'.join([str(date.tm_year), str(date.tm_mon),str(date.tm_mday)])
+          '''生成当前时间字符串'''
+          date = time.localtime()
+          str2='-'.join([str(date.tm_hour), str(date.tm_min),str(date.tm_sec)])
+          '''创建当前日期和当前时间目录'''
+          path = os.path.dirname(os.path.abspath(__file__))
+          dateDir = os.path.join(path,str1)
+          #如果当前日期目录不存的话就创建
+          if not os.path.exists(dateDir):
+                os.mkdir(dateDir)
+          timeDir= os.path.join(dateDir,str2)
+          #如果当前时间目录不存的话就创建
+          if not os.path.exists(timeDir):
+                os.mkdir(timeDir)
+          return timeDir
+
+    def takeScreenshot(driver,savePath,pictureName):
+        picturePath = os.path.join(savePath, pictureName+'.png')
+        try:
+            driver.get_screenshot_as_file(picturePath)
+        except Exception  as e:
+            print(traceback.print_exc())
+
+    def seeWait(self,type,text,time1,time2):
+        if type=="ID":
+            loginstr=(By.ID,text)
+            ww(webdriver,time1,time2).until(ec.presence_of_element_located(loginstr))
+        elif type=="NAME":
+            loginstr=(By.NAME,text)
+            ww(webdriver,time1,time2).until(ec.presence_of_element_located(loginstr))
+        elif type=="XPATH":
+            loginstr=(By.XPATH,text)
+            ww(webdriver,time1,time2).until(ec.presence_of_element_located(loginstr))
+        elif type=="LINK_TEXT":
+            loginstr=(By.LINK_TEXT,text)
+            ww(self.dr,time1,time2).until(ec.presence_of_element_located(loginstr))
+        elif type=="PARTIAL_LINK_TEXT":
+            loginstr=(By.PARTIAL_LINK_TEXT,text)
+            ww(webdriver,time1,time2).until(ec.presence_of_element_located(loginstr))
+
+    def wait(self,number):
         time.sleep(number)
 
     def switchFrame(self,frameid):
