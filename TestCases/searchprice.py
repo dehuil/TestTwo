@@ -1,5 +1,5 @@
 #coding:utf-8
-__author__ = 'zcs'
+__author__ = 'lee'
 from Commonlib.Commonlib import Commonlib
 from selenium.webdriver.common.keys import Keys
 p=Commonlib()

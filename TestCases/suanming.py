@@ -1,8 +1,8 @@
 #coding:utf-8
-__author__ = 'zcs'
+__author__ = 'lee'
 from selenium import webdriver
 import time
-dr=webdriver.Firefox()
+dr=webdriver.Chrome()
 dr.get("http://www.buyiju.com/")
 dr.maximize_window()
 time.sleep(3)

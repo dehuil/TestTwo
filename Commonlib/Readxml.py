@@ -1,5 +1,5 @@
 #coding:utf-8
-__author__ = 'zcs'
+__author__ = 'lee'
 from xml.dom import minidom
 class Readxml():
     def readXml(self,Onenode,Twonode):
