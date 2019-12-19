@@ -1,5 +1,5 @@
 #coding:utf-8
-__author__ = 'zcs'
+__author__ = 'lee'
 import time
 from selenium import webdriver
 dr=webdriver.Firefox()

@@ -1,5 +1,5 @@
 #coding:utf-8
-__author__ = 'zcs'
+__author__ = 'lee'
 import unittest
 from Bussniss.Bussniss import Bussniss
 from Commonlib.Readxml import Readxml
@@ -11,7 +11,6 @@ class Login(unittest.TestCase):
 
     def test001(self):
         self.assertEquals(self.b.login(r.readXml("login","username1"),r.readXml("login","passwd1")),r.readXml("login","expect1"))
-
 
     def tearDown(self):
         self.b.p.closeBrowser()

@@ -1,17 +1,19 @@
 #coding:utf-8
-__author__ = 'zcs'
+__author__ = 'lee'
 from Commonlib.Commonlib import Commonlib
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait as ww
 from selenium.webdriver.support import expected_conditions as ec
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
+import chardet
 class Bussniss():
     def __init__(self):
         self.p=Commonlib()
 
     def login(self,username,password):
-        self.p.seeWait('LINK_TEXT',u'登录',20,0.5)
+        self.p.seeWait('LINK_TEXT','登录',20,0.5)
         self.p.activeEvent("link_text","登录")
         self.p.wait(4)
         self.p.inputKeys("id","j_username",username)
@@ -20,9 +22,11 @@ class Bussniss():
         self.p.activeEvent("id","btn_Login")
         self.p.wait(3)
         try:
-            gt=self.p.getText("link_text","mwlt")
-        finally:
-            gt='错误'
+            gt=self.p.getText("xpath","(.//*[normalize-space(text()) and normalize-space(.)='帮助'])[2]/following::span[1]")
+            gt.encode('raw_unicode_escape')
+            return gt
+        except NoSuchElementException as e:
+            print(e)
 
     def searchPrice(self,str):
         self.p.waite(3)

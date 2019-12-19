@@ -1,5 +1,5 @@
 #coding:utf-8
-__author__ = 'zcs'
+__author__ = 'lee'
 import unittest
 from Bussniss.Bussniss import Bussniss
 from Commonlib.Readxml import Readxml
