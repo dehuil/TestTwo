@@ -1,9 +1,9 @@
 #coding:utf-8
-__author__ = 'zcs'
+__author__ = 'lee'
 from xml.dom import minidom
 class Readxml():
     def readXml(self,Onenode,Twonode):
-        root=minidom.parse("../DataShare/yhd.xml")
+        root=minidom.parse("../DataShare/kcb.xml")
         firstnode=root.getElementsByTagName(Onenode)[0]
         try:
             secondnode=firstnode.getElementsByTagName(Twonode)[0].firstChild.data

@@ -1,5 +1,5 @@
 #coding:utf-8
-__author__ = 'zcs'
+__author__ = 'lee'
 import HTMLTestRunner
 class CreaterReporter():
     def createReporter(self,mysuite):

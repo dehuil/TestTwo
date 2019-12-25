@@ -20,6 +20,7 @@ class SendEmail():
         # 构造MIMEBase对象做为文件附件内容并附加到根容器
         ## 读入文件内容并格式化 [方式1]－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
         data = open(file_name, 'rb')
+
         ctype,encoding = mimetypes.guess_type(file_name)
         if ctype is None or encoding is not None:
             ctype = 'application/octet-stream'
