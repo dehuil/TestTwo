@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <node>
     <login>
-        <username1>mwlt</username1>
-        <passwd1>123456</passwd1>
-        <expect1>mwlt</expect1>
-        <username2>mwlt</username2>
+        <username1>wangqiuyun</username1>
+        <passwd1>111111</passwd1>
+        <expect1>test-wang</expect1>
+        <username2>1</username2>
         <passwd2>2222</passwd2>
         <expect2>请输入密码</expect2>
     </login>
 
     <login>
-        <username1>TTT</username1>
+        <username1>wangqiuyun</username1>
+        <passwd1>111111</passwd1>
+        <expect1>test-wang</expect1>
     </login>
 </node>

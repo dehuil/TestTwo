@@ -12,21 +12,20 @@ class Bussniss():
     def __init__(self):
         self.p=Commonlib()
 
-    def login(self,username,password):
-        self.p.seeWait('LINK_TEXT','登录',20,0.5)
-        self.p.activeEvent("link_text","登录")
+    def kcb_login(self,username,password):
         self.p.wait(4)
-        self.p.inputKeys("id","j_username",username)
-        self.p.inputKeys("id","j_password",password)
-        self.p.wait(1)
-        self.p.activeEvent("id","btn_Login")
+        self.p.inputKeys("name","loginText",username)
+        self.p.inputKeys("name","password",password)
+        self.p.wait(2)
+        self.p.activeEvent("xpath","//button[@class='el-button el-button--primary']")
         self.p.wait(3)
         try:
-            gt=self.p.getText("xpath","(.//*[normalize-space(text()) and normalize-space(.)='帮助'])[2]/following::span[1]")
+            gt=self.p.getText("xpath","//span[contains(text(),'1111')]")
             gt.encode('raw_unicode_escape')
             return gt
         except NoSuchElementException as e:
-            print(e)
+            print('登录失败')
+        self.p.wait(5)
 
     def searchPrice(self,str):
         self.p.waite(3)
@@ -34,3 +33,6 @@ class Bussniss():
         self.p.waite(3)
         str1=self.p.localElement("partail_link_text",str).get_attribute("id")
         return self.p.localElement("xpath",".//*[@id='price0_"+str1[8:]+"']").get_attribute("yhdprice")
+
+if __name__ == '__main__':
+    1
